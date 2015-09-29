@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>admin</title>
+</head>
+<body>
+<h1>admin page</h1>
+
+<div><textarea name="name" rows="8" cols="40"></textarea></div>
+<button type="button" name="button">send</button>
+
+
+<script src="/socket.io/socket.io.js"></script>
+<script>
+var socket = io();
+window.addEventListener('load', function () {
+  document.querySelector('button').addEventListener('click', function () {
+    send();
+  });
+  document.querySelector('textarea').addEventListener('keyup', function (ev) {
+    if (ev.which === 13) {
+      send();
+    }
+    return false;
+  });
+
+  var send = function () {
+    var body = document.querySelector('textarea').value;
+    socket.emit('message', body);
+    document.querySelector('textarea').value= '';
+  }
+
+})
+
+</script>
+</body>
+</html>
