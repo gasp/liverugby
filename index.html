@@ -1,6 +1,28 @@
-<h1>Ceci est ma page index.html</h1>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>rugby</title>
+</head>
+<body>
+
+<h1>francia (los boludos) / argentina (los pumas)</h1>
+
+<ul class="newsfeed">
+
+</ul>
+
 
 <script src="/socket.io/socket.io.js"></script>
 <script>
   var socket = io();
+  var $feed = document.querySelector('.newsfeed');
+  socket.on('news', function (body) {
+    var message = document.createElement('li');
+    message.innerHTML = body;
+    $feed.appendChild(message);
+  });
 </script>
+
+</body>
+</html>
